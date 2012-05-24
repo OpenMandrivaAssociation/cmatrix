@@ -6,15 +6,16 @@
 %define debug_package	%{nil}
 %define name    cmatrix
 %define version     1.2a
-%define release %mkrel 69
+%define release 1
 Summary:	CMatrix simulates the display from "The Matrix"
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Group:		Graphical desktop/Other
+Group:		Terminals
 License:	GPL
 URL:		http://www.asty.org/cmatrix/
 Source0:	http://www.asty.org/cmatrix/dist/cmatrix-%{version}.tar.gz
+BuildRequires: xfont1-devel ncurses-devel
 Requires:	ncurses
 
 	
