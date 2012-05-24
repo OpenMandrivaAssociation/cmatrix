@@ -15,7 +15,7 @@ Group:		Terminals
 License:	GPL
 URL:		http://www.asty.org/cmatrix/
 Source0:	http://www.asty.org/cmatrix/dist/cmatrix-%{version}.tar.gz
-BuildRequires: xfont1-devel ncurses-devel
+BuildRequires: xfont1-devel libncurses-devel
 Requires:	ncurses
 
 	
