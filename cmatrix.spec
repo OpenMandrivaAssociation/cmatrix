@@ -2,7 +2,9 @@
 # SpecFile: cmatrix.spec 
 # Generato: http://www.mandrivausers.ro/
 # MRB-Falticska Florin
+# Build for Stella-6.4
 #####################################################
+#empty debug
 %define debug_package	%{nil}
 %define name    cmatrix
 %define version     1.2a
@@ -11,12 +13,19 @@ Summary:	CMatrix simulates the display from "The Matrix"
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Group:		Terminals
-License:	GPL
+Group:		Applications/Terminal
+License:	GNU General Public License (GPL)
 URL:		http://www.asty.org/cmatrix/
 Source0:	http://www.asty.org/cmatrix/dist/cmatrix-%{version}.tar.gz
-BuildRequires: libxfont-devel libncurses-devel
-Requires:	ncurses
+Patch0:         cmatrix-%{version}-makefile.patch
+Patch1:         cmatrix-no-TIME-DATE.patch
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  kbd
+BuildRequires:  ncurses-devel
+BuildRequires:  libX11-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+
 
 	
 %description
@@ -25,30 +34,45 @@ with terminal settings up to 132x300 and can scroll lines all at the same
 rate or asynchronously and at a user-defined speed.
 
 %prep
-%setup -q -n %{name}-%{version}
+%prep
+%setup -q
+%patch0 -p0
+%patch1 -p1
 
 %build
-./configure --prefix=%{_prefix} 
-%make
+aclocal
+autoconf
+automake -a
+%configure
+make
 
 %install
-install -d -m 755 %{buildroot}%{_bindir}
-install -d -m 755 %{buildroot}/usr/lib/kbd/consolefonts
-install -d -m 755 %{buildroot}/usr/X11R6/lib/X11/fonts/misc
-install -d -m 755 %{buildroot}/usr/X11R6/lib/X11/fonts/misc
-install -d -m 755 %{buildroot}%{_mandir}
-
-install -m 755 cmatrix %{buildroot}%{_bindir}/
-install -m 644 matrix.fnt $RPM_BUILD_ROOT/usr/lib/kbd/consolefonts
-install -m 644 matrix.psf.gz $RPM_BUILD_ROOT/usr/lib/kbd/consolefonts
-install -m 644 mtx.pcf $RPM_BUILD_ROOT/usr/X11R6/lib/X11/fonts/misc
-install -m 644 mtx.pcf $RPM_BUILD_ROOT/usr/X11R6/lib/X11/fonts/misc/mtx.pcf
+mkdir -p $RPM_BUILD_ROOT%{fontdir}
+mkdir -p $RPM_BUILD_ROOT/lib/kbd/consolefonts
+make DESTDIR=$RPM_BUILD_ROOT install
+install -m644 mtx.pcf $RPM_BUILD_ROOT%{fontdir}
 
 %files
 %defattr(-,root,root)
-%doc README COPYING ChangeLog AUTHORS INSTALL NEWS TODO
-%{_bindir}/cmatrix
-/usr/lib/kbd/consolefonts/matrix.psf.gz
-/usr/lib/kbd/consolefonts/matrix.fnt
-/usr/X11R6/lib/X11/fonts/misc/mtx.pcf
+%doc AUTHORS COPYING NEWS README TODO
+%{_mandir}/man1/*
+%{_bindir}/*
+%{fontdir}/*
+/lib/kbd/consolefonts/*
+
+%changelog
+* Sat May 25 2013  Falticska Florin <symbianflo@mandrivausers.ro> 1.2a-1
+- Push in rels2013
+- MRB-Mandriva Users.Ro
+
+* Sun Feb 13 2011 Nux nux@xxxnux.ro
+- Import from symbianflo's build
+- Build for Stella-6.2
+	
+* Mon Feb 07 2011 Falticska Florin <symbianflo@mandrivausers.ro> 1.2a-69mrb2010.2
+- imported from source 	
+- MRB-Mandriva Users.Ro
+
+
+
 
