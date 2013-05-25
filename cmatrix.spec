@@ -46,17 +46,17 @@ automake -a
 make
 
 %install
-mkdir -p $RPM_BUILD_ROOT%{_fontdir}
+mkdir -p $RPM_BUILD_ROOT/usr/share/fonts
 mkdir -p $RPM_BUILD_ROOT/lib/kbd/consolefonts
 make DESTDIR=$RPM_BUILD_ROOT install
-install -m644 mtx.pcf $RPM_BUILD_ROOT%{_fontdir}
+install -m644 mtx.pcf $RPM_BUILD_ROOT/usr/share/fonts
 
 %files
 %defattr(-,root,root)
 %doc AUTHORS COPYING NEWS README TODO
 %{_mandir}/man1/*
 %{_bindir}/*
-%{_fontdir}/*
+/usr/share/fonts/*
 /lib/kbd/consolefonts/*
 
 %changelog
