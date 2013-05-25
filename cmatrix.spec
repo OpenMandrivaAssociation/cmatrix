@@ -34,7 +34,6 @@ with terminal settings up to 132x300 and can scroll lines all at the same
 rate or asynchronously and at a user-defined speed.
 
 %prep
-%prep
 %setup -q
 %patch0 -p0
 %patch1 -p1
