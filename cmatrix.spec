@@ -10,7 +10,7 @@
 Summary:	CMatrix simulates the display from "The Matrix"
 Name:		%{name}
 Version:	%{version}
-Release:	%{release}%{?dist}
+Release:	%{release}
 Group:		Terminals
 License:	GPL
 URL:		http://www.asty.org/cmatrix/
