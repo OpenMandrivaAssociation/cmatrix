@@ -3,7 +3,8 @@
 # Generato: http://www.mandrivausers.ro/
 # MRB-Falticska Florin
 #####################################################
-%define debug_package	%{nil}
+%define debug_package   %{nil}
+%define distsuffix mrb
 %define name    cmatrix
 %define version     1.2a
 %define release 1
