@@ -4,7 +4,7 @@
 # MRB-Falticska Florin
 #####################################################
 %define debug_package   %{nil}
-%define distsuffix mrb
+#define distsuffix mrb
 %define name    cmatrix
 %define version     1.2a
 %define release 1
@@ -47,7 +47,6 @@ install -m 644 mtx.pcf $RPM_BUILD_ROOT/usr/X11R6/lib/X11/fonts/misc
 install -m 644 mtx.pcf $RPM_BUILD_ROOT/usr/X11R6/lib/X11/fonts/misc/mtx.pcf
 
 %files
-%defattr(-,root,root)
 %doc README COPYING ChangeLog AUTHORS INSTALL NEWS TODO
 %{_bindir}/cmatrix
 /usr/lib/kbd/consolefonts/matrix.psf.gz
