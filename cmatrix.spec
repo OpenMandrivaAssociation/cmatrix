@@ -14,7 +14,7 @@ Version:	%{version}
 Release:	%{release}
 Group:		Terminals
 License:	GPL
-URL:		http://www.asty.org/cmatrix/
+URL:		https://www.asty.org/cmatrix/
 Source0:	http://www.asty.org/cmatrix/dist/cmatrix-%{version}.tar.gz
 BuildRequires: pkgconfig(xfont) 
 BuildRequires: pkgconfig(ncurses)
